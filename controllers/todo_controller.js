@@ -9,23 +9,22 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log(req.body);
-    Todo.createTodo(req.body.todo_desc, (data) => {
-        res.send(data);
+    Todo.createTodo(req.body, (data) => {
+        res.sendStatus(200);
     });
 });
 
 router.put('/update/:id', (req, res) => {
     Todo.completeTodo(req.body, (data) => {
-        res.send(data);
+        res.sendStatus(200);
     });
 });
 
-// router.delete('/delete/:id', (req, res) => {
-//     todo.deleteOne(req.body, (data) => {
-//         res.send(data);
-//     })
-// })
+router.delete('/delete/:id', (req, res) => {
+    Todo.deleteTodo(req.body, (data) => {
+        res.sendStatus(200);
+    })
+})
 
 router.get('*', (req, res) => {
     res.redirect('/');

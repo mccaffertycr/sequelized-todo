@@ -6,8 +6,9 @@ $(document).on('click', '.new-todo', function(e) {
         method: 'post',
         data: { todo_desc: todo_desc },
         success: function(res) {
+            console.log(res);
             $('.todo').append(
-                `<li class="todo${res[1]} list-group-item" data-id=${res.id}>${res.todo_desc}
+                `<li class="todo${res.id} list-group-item" data-id=${res.id}>${res.todo_desc}
                     <button class="btn done btn-success" data-id=${res.id}>✓</button>
                 </li>`
             );
