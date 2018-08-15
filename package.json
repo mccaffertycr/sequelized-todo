@@ -1,0 +1,32 @@
+{
+  "name": "sequelized-todo",
+  "version": "1.0.0",
+  "description": "to do list ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mccaffertycr/sequelized-todo.git"
+  },
+  "author": "mccaffertycr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mccaffertycr/sequelized-todo/issues"
+  },
+  "homepage": "https://github.com/mccaffertycr/sequelized-todo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.6.1",
+    "path": "^0.12.7",
+    "sequelize": "^4.38.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}

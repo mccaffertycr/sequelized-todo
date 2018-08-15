@@ -1,0 +1,22 @@
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background: url(../images/sky_bg_1.jpg) no-repeat;
+    background-size: cover;
+    font-family: 'Space Mono', monospace;
+    overflow: none;
+    color: white;
+    letter-spacing: .05rem;
+}
+
+ul, li {
+    color: black;
+    background: none;
+}
+
+#todo-list {
+    width: 20%;
+}
+
