@@ -1,31 +1,31 @@
 var express = require('express');
 var router = express.Router();
-var todo = require('../models/todo');
+var Todo = require('../config/orm');
 
 router.get('/', (req, res) => {
-    todo.selectAll((data) => {
+    Todo.selectAll((data) => {
         res.render('index', { todos: data });
     });
 });
 
 router.post('/', (req, res) => {
     console.log(req.body);
-    todo.insertOne(req.body, (data) => {
+    Todo.createTodo(req.body.todo_desc, (data) => {
         res.send(data);
     });
 });
 
 router.put('/update/:id', (req, res) => {
-    todo.updateOne(req.body, (data) => {
+    Todo.completeTodo(req.body, (data) => {
         res.send(data);
     });
 });
 
-router.delete('/delete/:id', (req, res) => {
-    todo.deleteOne(req.body, (data) => {
-        res.send(data);
-    })
-})
+// router.delete('/delete/:id', (req, res) => {
+//     todo.deleteOne(req.body, (data) => {
+//         res.send(data);
+//     })
+// })
 
 router.get('*', (req, res) => {
     res.redirect('/');

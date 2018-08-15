@@ -4,11 +4,11 @@ $(document).on('click', '.new-todo', function(e) {
     $.ajax({
         url: '/',
         method: 'post',
-        data: { todo_desc: todo_desc, completed: 0 },
+        data: { todo_desc: todo_desc },
         success: function(res) {
             $('.todo').append(
-                `<li class="todo${res[1]} list-group-item" data-id=${res[1]}>${res[0].todo_desc}
-                    <button class="btn done btn-success" data-id=${res[1]}>✓</button>
+                `<li class="todo${res[1]} list-group-item" data-id=${res.id}>${res.todo_desc}
+                    <button class="btn done btn-success" data-id=${res.id}>✓</button>
                 </li>`
             );
         }
@@ -21,7 +21,7 @@ $(document).on('click', '.done', function(e) {
     $.ajax({
         url: '/update/' + id,
         method: 'put',
-        data: { id: id, completed: 1 },
+        data: { id: id },
         success: function(res) {
             var completed = $(`.todo${id}`);
             completed.remove();

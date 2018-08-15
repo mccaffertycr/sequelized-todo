@@ -1,27 +1,21 @@
-var mysql = require("mysql");
-var connection;
+var Sequelize = require('sequelize');
+var sequelize;
 
 // heroku / localhost conditional
 if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
+    sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
-    connection = mysql.createConnection({
+    sequelize = new Sequelize('todo_db2', 'root', 'root', {
         host: 'localhost',
         port: 3306,
-        user: 'root',
-        password: 'root',
-        database: "todo_db"
+        dialect: "mysql",
+        pool: {
+          max: 5,
+          min: 0,
+          idle: 10000
+        }
     });      
-}
-
-connection.connect(function(err) {
-    if (err) {
-      console.error("error connecting: " + err.stack);
-      return;
-    }
-
-    console.log("connected as id " + connection.threadId);
-});
+};
 
 
-module.exports = connection;
+module.exports = sequelize;

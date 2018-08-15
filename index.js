@@ -17,9 +17,9 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 
-var todoController = require('./controllers/todo_troller');
+var controller = require('./controllers/todo_controller');
 
-app.use('/', todoController);
+app.use('/', controller);
 
 
 app.listen(PORT, () => {
