@@ -17,6 +17,7 @@ $(document).on('click', '.new-todo', function(e) {
 });
 
 $(document).on('click', '.done', function(e) {
+    e.preventDefault();
     var id = $(this).data('id');
     $.ajax({
         url: '/update/' + id,
@@ -35,6 +36,7 @@ $(document).on('click', '.done', function(e) {
 });
 
 $(document).on('click', '.delete', function(e) {
+    e.preventDefault();
     var id = $(this).data('id');
     $.ajax({
         url: '/delete/' + id,
