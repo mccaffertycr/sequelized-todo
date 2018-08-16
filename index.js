@@ -1,5 +1,6 @@
 var express = require('express');              
 var bodyParser = require('body-parser');
+var db = require('./models');
 var path = require('path');
            require('dotenv').config();
 
@@ -15,13 +16,15 @@ var exphbs = require('express-handlebars');
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+app.set('views', './views');
 
 
 var controller = require('./controllers/todo_controller');
 
 app.use('/', controller);
 
-
-app.listen(PORT, () => {
-    console.log('listening on: http://localhost:' + PORT);
-});
+db.sequelize.sync().then(() => {
+    app.listen(PORT,() => {
+      console.log("App listening on PORT " + PORT);
+    });
+})

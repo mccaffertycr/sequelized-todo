@@ -1,3 +1,16 @@
+$(document).on('click', '.new-user', function(e) {
+    e.preventDefault();
+    var username = $('#username').val();
+    $.ajax({
+        url:'/' + username.replace(/\s+/g, "").toLowerCase(),
+        method: 'post',
+        data: { name: username },
+        success: function(res) {
+            console.log(res);
+            window.location.href = '/username';        }
+    })
+})
+
 $(document).on('click', '.new-todo', function(e) {
     e.preventDefault();
     var todo_desc = $('#todo-desc').val();
