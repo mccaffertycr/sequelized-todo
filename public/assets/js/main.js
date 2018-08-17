@@ -2,14 +2,29 @@ $(document).on('click', '.new-user', function(e) {
     e.preventDefault();
     var username = $('#username').val();
     $.ajax({
-        url:'/' + username.replace(/\s+/g, "").toLowerCase(),
+        url:'/api/' + username.replace(/\s+/g, "").toLowerCase(),
         method: 'post',
         data: { name: username },
         success: function(res) {
-            console.log(res);
-            window.location.href = '/username';        }
+         console.log(res);
+         $('.users').append(
+            `<li class="user${res.name} list-group-item">${res.name}
+                    <button class="user btn btn-success" data-name=${res.name} data-id=${res.uuid}>></button>
+            </li>`
+         )
+        }
     })
 })
+
+$(document).on('click', '.user', function(e) {
+   e.preventDefault();
+   var username = $(this).data('name');
+   var uuid = $(this).data('id');
+   var query = '/' + username + '/' + uuid;
+   $.get(query, function(data) {
+      console.log(data);
+   })
+});
 
 $(document).on('click', '.new-todo', function(e) {
     e.preventDefault();
@@ -60,3 +75,11 @@ $(document).on('click', '.delete', function(e) {
         }
     });
 });
+
+// $(document).ready(function() {
+//    function getUsers() {
+//       $.get('/api/users', function(data) {
+         
+//       })
+//    }
+// })

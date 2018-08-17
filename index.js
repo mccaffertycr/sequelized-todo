@@ -19,11 +19,11 @@ app.set('view engine', 'handlebars');
 app.set('views', './views');
 
 
-var controller = require('./controllers/todo_controller');
+require('./routes/apiRoutes')(app);
+require('./routes/views')(app);
 
-app.use('/', controller);
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
     app.listen(PORT,() => {
       console.log("App listening on PORT " + PORT);
     });

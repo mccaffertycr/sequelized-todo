@@ -17,7 +17,7 @@
             {{#each todos}} 
                 {{#unless this.completed}}
                   <li class="todo{{this.id}} list-group-item" data-id={{this.id}}>{{this.todo_desc}}
-                    <button class="btn btn-success done" data-id={{this.id}}>✓</button>
+                    <button class="btn btn-success done" data-id={{this.uuid}}>✓</button>
                   </li> 
                 {{/unless}} 
             {{/each}}

@@ -9,16 +9,16 @@
             </div>
         </div>
     </div>
-    <div class="row">
+
         <hr>
-            <ul class="users list-group">
+            <ul class="users list-group col-sm-6">
             {{#each users}} 
-                <li class="user list-group-item" data-uuid={{this.uuid}}>{{this.username}}
-                  <button class="btn btn-success done" data-id={{this.uuid}}>></button>
+                <li class="list-group-item">{{this.name}}
+                  <button class="user btn btn-primary" data-name={{this.name}} data-id={{this.uuid}}>></button>
                 </li> 
             {{/each}}
             </ul>
-    </div>
+
 </div>
 
 <script type="text/javascript" src="/assets/js/main.js"></script>
