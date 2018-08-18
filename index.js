@@ -1,18 +1,18 @@
-var express = require('express');              
-var bodyParser = require('body-parser');
-var path = require('path');
+const express = require('express');              
+const bodyParser = require('body-parser');
+const path = require('path');
 require('dotenv').config();
-var db = require('./models');
+const db = require('./models');
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');

@@ -1,4 +1,4 @@
-var controller = require('../controllers/todo_controller');
+const controller = require('../controllers/todo_controller');
 
 module.exports = function (app) {
   app.get("/", controller.userIndex)
