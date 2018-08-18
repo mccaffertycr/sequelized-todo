@@ -1,10 +1,12 @@
 <div class="container mt-5">
     <div class="row mb-2">
         <div class="col-sm-6">
+            <h1 id="user-name" data-name={{ username }}>{{ username }}</h1>
+            <hr>
             <div class="input-group">
               <input class="form-control" type="text" name="todo_desc" id="todo-desc" placeholder="enter a task">
                 <div class="input-group-append">
-                  <button type="submit" data-uuid={{ uuid }} class="new-todo btn btn-primary">+</button>
+                  <button type="submit" data-name={{ username }} data-id={{ uuid }} class="new-todo btn btn-primary">+</button>
                 </div>
             </div>
         </div>
@@ -17,7 +19,7 @@
             {{#each todos}} 
                 {{#unless this.completed}}
                   <li class="todo{{this.id}} list-group-item" data-id={{this.id}}>{{this.todo_desc}}
-                    <button class="btn btn-success done" data-id={{this.uuid}}>✓</button>
+                    <button class="btn btn-success done" data-id={{this.id}}>✓</button>
                   </li> 
                 {{/unless}} 
             {{/each}}

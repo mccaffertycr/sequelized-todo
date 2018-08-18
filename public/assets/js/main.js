@@ -1,3 +1,5 @@
+$(document).ready(function() {
+   
 $(document).on('click', '.new-user', function(e) {
     e.preventDefault();
     var username = $('#username').val();
@@ -18,21 +20,23 @@ $(document).on('click', '.new-user', function(e) {
 
 $(document).on('click', '.user', function(e) {
    e.preventDefault();
-   var username = $(this).data('name');
+   var username = $(this).data('name').replace(/\s+/g, "").toLowerCase();
    var uuid = $(this).data('id');
-   var query = '/' + username + '/' + uuid;
+   var query = '/api/' + username + '/' + uuid;
    $.get(query, function(data) {
-      console.log(data);
-   })
+      window.location.replace('/api/' + username + '/' + uuid);
+   });
 });
 
 $(document).on('click', '.new-todo', function(e) {
     e.preventDefault();
+    var username = $(this).data('name');
     var todo_desc = $('#todo-desc').val();
+    var uuid = $(this).data('id');
     $.ajax({
-        url: '/',
+        url: '/api/' + username + '/todos',
         method: 'post',
-        data: { todo_desc: todo_desc },
+        data: { todo_desc: todo_desc, uuid: uuid },
         success: function(res) {
             $('.todo').append(
                 `<li class="todo${res.id} list-group-item" data-id=${res.id}>${res.todo_desc}
@@ -47,16 +51,17 @@ $(document).on('click', '.new-todo', function(e) {
 $(document).on('click', '.done', function(e) {
     e.preventDefault();
     var id = $(this).data('id');
+    var username = $('#user-name').data('name');
     $.ajax({
-        url: '/update/' + id,
+        url: '/' + username,
         method: 'put',
-        data: { id: id },
+        data: { id: id, completed: 1 },
         success: function(res) {
             var completed = $(`.todo${id}`);
             completed.remove();
             completed.children().remove();
             completed.append(
-                `<button class="btn btn-danger delete" data-id=${this.id}>x</button>`
+                  `<button class="btn btn-danger delete" data-id=${id}>x</button>`
             )
             $('.completed').append(completed);                
         }
@@ -65,9 +70,10 @@ $(document).on('click', '.done', function(e) {
 
 $(document).on('click', '.delete', function(e) {
     e.preventDefault();
+    var username = $('#username').val();
     var id = $(this).data('id');
     $.ajax({
-        url: '/delete/' + id,
+        url: '/' + username + '/' + id,
         method: 'delete',
         data: { id: id },
         success: function(res) {
@@ -76,10 +82,5 @@ $(document).on('click', '.delete', function(e) {
     });
 });
 
-// $(document).ready(function() {
-//    function getUsers() {
-//       $.get('/api/users', function(data) {
-         
-//       })
-//    }
-// })
+
+});

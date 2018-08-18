@@ -12,23 +12,12 @@ module.exports = function(app) {
          res.json(dbUser);
       });
    });
-   
-   app.get('/api/:user/:uuid', (req, res) => {
-      var uuid = req.params.uuid;
-      db.Todo.findAll({
-         where: {
-            UserUuid: uuid
-         }
-      }).then((userTodos) => {
-         res.json(userTodos);
-      });
-   });
 
-   app.post('/api/:user', (req, res) => {
+   app.post('/api/:user/todos', (req, res) => {
       db.Todo.create({
          todo_desc: req.body.todo_desc,
          completed: 0,
-         UserUuid: req.body.uuid            
+         UserUuid: req.body.uuid              
       }).then((userTodo) => {
          res.json(userTodo);
       });
@@ -48,10 +37,10 @@ module.exports = function(app) {
          completed: req.body.completed
       }, {
          where: {
-            UserUuid: req.body.uuid
+            id: req.body.id
          }
-      }).then((userTodos) => {
-         res.json(userTodos);
+      }).then((todo) => {
+         res.json(todo);
       }).catch((err) => {
          res.json(err);
       });
