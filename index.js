@@ -1,8 +1,8 @@
 var express = require('express');              
 var bodyParser = require('body-parser');
-var db = require('./models');
 var path = require('path');
-           require('dotenv').config();
+require('dotenv').config();
+var db = require('./models');
 
 var app = express();
 var PORT = process.env.PORT || 3000;
