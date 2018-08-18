@@ -5,7 +5,7 @@ var path = require('path');
            require('dotenv').config();
 
 var app = express();
-var PORT = process.env.DB_HOSTNAME || 3000;
+var PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: true }));
