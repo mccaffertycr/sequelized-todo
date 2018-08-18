@@ -9,15 +9,14 @@
             </div>
         </div>
     </div>
-
-        <hr>
-            <ul class="users list-group col-sm-6">
-            {{#each users}} 
-                <li class="list-group-item">{{this.name}}
-                  <button class="user btn btn-primary" data-name={{this.name}} data-id={{this.uuid}}>></button>
-                </li> 
-            {{/each}}
-            </ul>
+      
+    <ul class="users list-group col-sm-6">
+      {{#each users}} 
+         <li class="list-group-item">{{this.name}}
+            <button class="user btn btn-primary" data-name={{this.name}} data-id={{this.uuid}}>></button>
+         </li> 
+      {{/each}}
+    </ul>
 
 </div>
 
