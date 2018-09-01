@@ -29,6 +29,8 @@ app.set('views', './views');
 require('./routes/apiRoutes')(app);
 require('./routes/views')(app);
 
+require('./app/config/passport/passport.js')(passport, models.user);
+
 var syncOptions = { force: false };
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
   syncOptions.force = true;

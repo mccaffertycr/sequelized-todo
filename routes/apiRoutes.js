@@ -1,6 +1,6 @@
 const db = require('../models');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
    app.get('/api/todos', (req, res) => {
       db.Todo.findAll({}).then((dbTodo) => {
          res.json(dbTodo);
@@ -23,14 +23,11 @@ module.exports = function(app) {
       });
    });
 
-   app.post('/api/:user', (req, res) => {
-      db.User.create({
-         username: req.body.name,
-         password: req.body.password
-      }).then((user) => {
-         res.json(user);
-      })
-   })
+   app.post('/api/:user', passport.authenticate('local-signup', {
+    successRedirect: '/api/:user',
+    failureRedirect: '/'
+    }
+    ));
 
    app.put('/:user', (req, res) => {
       db.Todo.update({
