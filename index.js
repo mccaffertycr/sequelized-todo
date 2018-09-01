@@ -29,8 +29,12 @@ app.set('views', './views');
 require('./routes/apiRoutes')(app);
 require('./routes/views')(app);
 
+var syncOptions = { force: false };
+if (process.env.NODE_ENV === 'test' || process.end.NODE_ENV === 'development') {
+  syncOptions.force = true;
+}
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync(syncOptions).then(() => {
     app.listen(PORT,() => {
       console.log("App listening on PORT " + PORT);
     });
