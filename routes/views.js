@@ -1,7 +1,8 @@
 const controller = require('../controllers/todo_controller');
+const authController = require('../controllers/auth_controller');
 
 module.exports = function (app) {
-  app.get("/", controller.userIndex)
+  app.get("/", authController.signup)
 
-  app.get("/api/:user/:uuid", controller.userView)
+  app.get("/:user/:id", controller.userView)
 };

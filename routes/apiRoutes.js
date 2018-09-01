@@ -17,16 +17,16 @@ module.exports = function(app) {
       db.Todo.create({
          todo_desc: req.body.todo_desc,
          completed: 0,
-         UserUuid: req.body.uuid              
+         UserId: req.body.uid              
       }).then((userTodo) => {
          res.json(userTodo);
       });
    });
 
    app.post('/api/:user', (req, res) => {
-      var username = req.params.user
       db.User.create({
-         name: username
+         username: req.body.name,
+         password: req.body.password
       }).then((user) => {
          res.json(user);
       })

@@ -1,30 +1,30 @@
 $(document).ready(function() {
    
 $(document).on('click', '.new-user', function(e) {
-    e.preventDefault();
-    var username = $('#username').val();
-    $.ajax({
-        url:'/api/' + username.replace(/\s+/g, "").toLowerCase(),
-        method: 'post',
-        data: { name: username },
-        success: function(res) {
-         console.log(res);
-         $('.users').append(
-            `<li class="user${res.name} list-group-item">${res.name}
-                    <button class="user btn btn-success" data-name=${res.name} data-id=${res.uuid}>></button>
-            </li>`
-         )
-        }
-    })
+  e.preventDefault();
+  var username = $('#username').val();
+  var pw = $('#password').val();
+  $.ajax({
+    url:'/api/' + username.replace(/\s+/g, "").toLowerCase(),
+    method: 'post',
+    data: { name: username, password: pw },
+    success: function(res) {
+      $('.users').append(
+        `<li class="user${res.username} list-group-item">${res.username}
+            <button class="user btn btn-success" data-name=${res.username} data-id=${res.id}>></button>
+          </li>`
+        )
+      }
+  })
 })
 
 $(document).on('click', '.user', function(e) {
    e.preventDefault();
    var username = $(this).data('name').replace(/\s+/g, "").toLowerCase();
-   var uuid = $(this).data('id');
-   var query = '/api/' + username + '/' + uuid;
+   var userId = $(this).data('id');
+   var query = '/' + username + '/' + userId;
    $.get(query, function(data) {
-      window.location.replace('/api/' + username + '/' + uuid);
+      window.location.replace(query);
    });
 });
 
@@ -32,18 +32,18 @@ $(document).on('click', '.new-todo', function(e) {
     e.preventDefault();
     var username = $(this).data('name');
     var todo_desc = $('#todo-desc').val();
-    var uuid = $(this).data('id');
+    var id = $(this).data('id');
     $.ajax({
-        url: '/api/' + username + '/todos',
-        method: 'post',
-        data: { todo_desc: todo_desc, uuid: uuid },
-        success: function(res) {
-            $('.todo').append(
-                `<li class="todo${res.id} list-group-item" data-id=${res.id}>${res.todo_desc}
-                    <button class="btn done btn-success" data-id=${res.id}>✓</button>
-                </li>`
-            );
-        }
+      url: '/api/' + username + '/todos',
+      method: 'post',
+      data: { todo_desc: todo_desc, uid: id },
+      success: function(res) {
+        $('.todo').append(
+          `<li class="todo${res.id} list-group-item" data-id=${res.id}>${res.todo_desc}
+              <button class="btn done btn-success" data-id=${res.id}>✓</button>
+            </li>`
+          );
+      }
     });
     $('#todo-desc').val('');
 });

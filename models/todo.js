@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
   
-    Todo.associate = function (models) {
+    Todo.associate = (models) => {
       models.Todo.belongsTo(models.User, {
         onDelete: "CASCADE",
         foreignKey: {
