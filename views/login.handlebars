@@ -1,22 +1,23 @@
 <div class="container mt-5">
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <div class="input-group">
-              <input class="form-control" type="text" name="username" id="username" placeholder="enter new username">
-                <div class="input-group-append">
-                  <button type="submit" class="new-user btn btn-primary">></button>
-                </div>
-            </div>
+  <div class="row mb-2">
+    <div class="col-sm-6">
+      <div class="input-group">
+        <div class="input-group-append">
+          <input class="form-control" type="text" name="username" id="username" placeholder="enter username">
+          <input class="form-control mx-1" type="password" name="password" id="password" placeholder="enter password">
+            <button type="submit" class="new-user btn btn-primary">></button>
         </div>
+      </div>
     </div>
+  </div>
       
-    <ul class="users list-group col-sm-6">
-      {{#each users}} 
-         <li class="list-group-item">{{this.name}}
-            <button class="user btn btn-primary" data-name={{this.name}} data-id={{this.uuid}}>></button>
-         </li> 
-      {{/each}}
-    </ul>
+  <ul class="users list-group col-sm-6">
+    {{#each users}} 
+      <li class="list-group-item">{{this.username}}
+        <button class="user btn btn-primary" data-name={{this.username}} data-id={{this.id}}>></button>
+      </li> 
+    {{/each}}
+  </ul>
 
 </div>
 
