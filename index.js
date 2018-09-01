@@ -1,7 +1,8 @@
+require('dotenv').config();
 const express = require('express');              
 const bodyParser = require('body-parser');
 const path = require('path');
-require('dotenv').config();
+var env = process.env.NODE_ENV || 'development';
 const db = require('./models');
 
 const app = express();
@@ -22,8 +23,13 @@ app.set('views', './views');
 require('./routes/apiRoutes')(app);
 require('./routes/views')(app);
 
+var syncOptions = { force: false };
 
-db.sequelize.sync({ force: false }).then(() => {
+if(env === 'test' || 'development') {
+  syncOptions.force = true;
+}
+
+db.sequelize.sync(syncOptions).then(() => {
     app.listen(PORT,() => {
       console.log("App listening on PORT " + PORT);
     });

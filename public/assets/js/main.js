@@ -2,7 +2,7 @@ $(document).ready(function() {
    
 $(document).on('click', '.new-user', function(e) {
     e.preventDefault();
-    var username = $('#username').val();
+    var username = $('#name').val();
     $.ajax({
         url:'/api/' + username.replace(/\s+/g, "").toLowerCase(),
         method: 'post',
