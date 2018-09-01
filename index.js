@@ -30,7 +30,7 @@ require('./routes/apiRoutes')(app);
 require('./routes/views')(app);
 
 var syncOptions = { force: false };
-if (process.env.NODE_ENV === 'test' || process.end.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
   syncOptions.force = true;
 }
 
