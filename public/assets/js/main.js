@@ -15,8 +15,8 @@ $(document).on('click', '.new-user', function(e) {
             </li>`
          )
         }
-    })
-})
+    });
+});
 
 $(document).on('click', '.user', function(e) {
    e.preventDefault();
